@@ -9,7 +9,7 @@ heath_router = APIRouter()
 
 @heath_router.get("/ping", status_code=200, response_model=BaseResponseData)
 async def health_check(response: Response):
-    health_service = HealthService(services=[endpoint.postgres, endpoint.redis])
+    health_service = HealthService(services=[endpoint.postgres, endpoint.redis, endpoint.kafka])
     health_status, is_healthy = await health_service.run_health_check()
     if not is_healthy:
         response.status_code = status.HTTP_503_SERVICE_UNAVAILABLE

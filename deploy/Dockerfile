@@ -22,4 +22,4 @@ COPY config/ config/
 
 # command: use exec-format over shell-format
 ENTRYPOINT ["uvicorn", "--factory", "app:create_app"]
-CMD ["--host=0.0.0.0", "--port=80", "--workers=1", "--log-config=config/log-config.yml"]
+CMD ["--host=0.0.0.0", "--port=8000", "--workers=1", "--log-config=config/log-config.yml"]

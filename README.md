@@ -1,4 +1,4 @@
-# codebase-fastapi
+# fastapi-boilerplate-vn
 
 ## Overview
 A scalable and well-structured FastAPI boilerplate for building modern, production-ready APIs. This codebase includes best practices for organizing large projects, dependency injection, async SQLAlchemy support, JWT authentication, background tasks, and more.
@@ -95,7 +95,7 @@ make format
 
 ## Project Structure
 ```
-codebase-fastapi/
+fastapi-boilerplate-vn/
 ├── app/                    # Application package
 │   ├── api/               # API endpoints
 │   ├── core/              # Core functionality

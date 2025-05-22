@@ -29,6 +29,10 @@ class RedisConfig(BaseModel):
     uri: str
 
 
+class KafkaConfig(BaseModel):
+    bootstrap_servers: str = "localhost:9092"
+
+
 class Config(BaseSettings):
     """
     Global config use for service with debug, origin
@@ -39,6 +43,7 @@ class Config(BaseSettings):
     metadata: MetadataConfig
     postgres: PostgresConfig
     redis: RedisConfig
+    kafka: KafkaConfig
 
 
 # Load config from settings.toml

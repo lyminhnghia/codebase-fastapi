@@ -9,10 +9,13 @@ prefix = '/api/v1'
 swagger = true
 
 [postgres]
-uri = 'postgresql+asyncpg://postgres:postgres@localhost:5432/postgres'
+uri = 'postgresql+asyncpg://postgres:postgres@postgres:5432/postgres'
 max_overflow = 10
 pool_size = 10
 echo = false
 
 [redis]
-uri = 'redis://localhost:6379'
+uri = 'redis://redis:6379'
+
+[kafka]
+bootstrap_servers = 'kafka:29092'
