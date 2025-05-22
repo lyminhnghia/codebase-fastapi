@@ -1,0 +1,18 @@
+[debug]
+log_level = 10
+
+[origin]
+allowed = ['*']
+
+[metadata]
+prefix = '/api/v1'
+swagger = true
+
+[postgres]
+uri = 'postgresql+asyncpg://postgres:postgres@localhost:5432/postgres'
+max_overflow = 10
+pool_size = 10
+echo = false
+
+[redis]
+uri = 'redis://localhost:6379'

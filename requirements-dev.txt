@@ -1,0 +1,12 @@
+-r requirements.txt
+
+pytest==7.3.1
+pytest-mock==3.10.0
+pytest-cov==4.1.0
+pytest-asyncio==0.18
+aiosqlite==0.21.0
+
+isort
+black
+ruff
+pre-commit

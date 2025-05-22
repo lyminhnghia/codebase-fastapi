@@ -1,0 +1,11 @@
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+pythonpath = "."
+testpaths = "tests"
+addopts = "--cov=app --cov-report=term"
+
+[tool.coverage.run]
+relative_files = true
+
+[tool.isort]
+profile = 'black'

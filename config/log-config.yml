@@ -1,0 +1,52 @@
+version: 1
+disable_existing_loggers: False
+
+root:
+  handlers: [default]
+  level: INFO
+
+loggers:
+  uvicorn:
+    handlers: [default]
+    level: INFO
+    propagate: False
+  uvicorn.error:
+    level: INFO
+  uvicorn.access:
+    handlers: [access]
+    level: INFO
+    propagate: False
+  opentelemetry:
+    level: CRITICAL
+    handlers: [access]
+    propagate: false
+  asgi_correlation_id:
+    handlers: [default, access]
+    level: CRITICAL
+
+handlers:
+  default:
+    formatter: default
+    class: logging.StreamHandler
+    stream: ext://sys.stderr
+    filters: [correlation_id]
+  access:
+    formatter: access
+    class: logging.StreamHandler
+    stream: ext://sys.stdout
+    filters: [correlation_id]
+
+filters:
+  correlation_id:
+    '()': asgi_correlation_id.CorrelationIdFilter
+    uuid_length: 32
+    default_value: ''
+
+formatters:
+  default:
+    (): uvicorn.logging.DefaultFormatter
+    fmt: "%(asctime)s %(levelprefix)s %(name)s %(correlation_id)s - %(message)s"
+    use_colors: None
+  access:
+    (): uvicorn.logging.AccessFormatter
+    fmt: '%(asctime)s %(levelprefix)s %(client_addr)s %(correlation_id)s - "%(request_line)s" %(status_code)s'
