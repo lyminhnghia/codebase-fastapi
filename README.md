@@ -6,7 +6,7 @@ A scalable and well-structured FastAPI boilerplate for building modern, producti
 ## Quick Start
 
 ### Using Docker Compose (Recommended)
-The easiest way to run the application is using Docker Compose. This will set up all required services (PostgreSQL, Redis) and run the application with proper service orchestration.
+The easiest way to run the application is using Docker Compose. This will set up all required services (PostgreSQL, Redis, Kafka) and run the application with proper service orchestration.
 
 ```bash
 # Start all services
@@ -23,10 +23,12 @@ The Docker Compose setup includes:
 - FastAPI application (port 8000)
 - PostgreSQL database (port 5432)
 - Redis cache (port 6379)
+- Kafka (port 9092)
+- Zookeeper (port 2181)
 - Automatic database migrations
 
 Services start in the following order:
-1. PostgreSQL and Redis (with health checks)
+1. PostgreSQL, Redis and Kafka (with health checks)
 2. Database migrations
 3. FastAPI application
 
@@ -34,8 +36,10 @@ Services start in the following order:
 
 #### 1. Prerequisites
 - Python 3.12+
-- PostgreSQL 16+
-- Redis
+- PostgreSQL 15.3+
+- Redis redis:6.2-alpine
+- Kafka latest
+- Zookeeper latest
 
 #### 2. Environment Setup
 
@@ -96,16 +100,19 @@ make format
 ## Project Structure
 ```
 fastapi-boilerplate-vn/
-├── app/                    # Application package
-│   ├── api/               # API endpoints
-│   ├── core/              # Core functionality
-│   ├── db/                # Database models and sessions
-│   ├── services/          # Business logic
-│   └── utils/             # Utility functions
-├── config/                # Configuration files
+├── app/                  # Application package
+│   ├── constants/          # Constant variables
+│   ├── cores/              # Core functionality
+│   ├── dto/                # Data transfer object
+│   ├── models/             # Database models
+│   ├── repositories/       # Database sessions
+│   ├── services/           # Business logic
+│   ├── routes/             # API endpoints
+│   └── utils/              # Utility functions
+├── config/               # Configuration files
 ├── deploy/               # Deployment configurations
 ├── tests/                # Test suite
-├── alembic/              # Database migrations
+├── migration/            # Database migrations
 ├── docker-compose.yml    # Docker services configuration
 └── requirements-dev.txt  # Development dependencies
 ```
